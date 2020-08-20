@@ -30,3 +30,4 @@ out/
 
 ### VS Code ###
 .vscode/
+user-microservice/SENDGRID_API_KEY.txt
