@@ -1,10 +1,10 @@
-package com.proyectofinal.configurationserver;
+package com.proyectofinal.servidorperimetral;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ConfigurationserverApplicationTests {
+class ServidorPerimetralApplicationTests {
 
     @Test
     void contextLoads() {
