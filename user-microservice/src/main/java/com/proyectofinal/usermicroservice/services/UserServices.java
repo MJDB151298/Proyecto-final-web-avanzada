@@ -4,6 +4,7 @@ import com.sendgrid.*;
 import com.proyectofinal.usermicroservice.entities.User;
 import com.proyectofinal.usermicroservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
@@ -12,8 +13,13 @@ import java.io.IOException;
 import java.util.Optional;
 import java.util.Scanner;
 
+@Service
 public class UserServices {
     @Autowired UserRepository userRepository;
+
+    public User findUser(String username){
+        return userRepository.findByUsername(username);
+    }
 
     public boolean sendRegistrationEmail(User user){
         Email desdeEmail = new Email("20160370@ce.pucmm.edu.do");
