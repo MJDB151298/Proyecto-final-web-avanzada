@@ -29,7 +29,7 @@ dependencies {
     //Libreria para centralizar la configuacion.
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
     //Libreria para agregar la notificacion con Eureka
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
     //Libreria para la caja de brakers
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
     compileOnly 'org.projectlombok:lombok'
