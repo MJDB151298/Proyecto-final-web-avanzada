@@ -12,4 +12,11 @@ public class PlansController {
     {
         return "formPlanes";
     }
+
+    @RequestMapping("/paypal")
+    public String paypal() {
+        //TODO: llamar el microservicio de eventos
+
+        return "plans";
+    }
 }
