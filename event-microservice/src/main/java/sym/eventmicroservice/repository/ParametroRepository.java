@@ -1,8 +1,8 @@
-package edu.pucmm.eict.springbootpaypal.repositorios;
+package sym.eventmicroservice.repository;
 
-import edu.pucmm.eict.springbootpaypal.entidades.Parametro;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import sym.eventmicroservice.entities.Parametro;
 
 @Repository
 public interface ParametroRepository extends JpaRepository<Parametro, Integer> {
