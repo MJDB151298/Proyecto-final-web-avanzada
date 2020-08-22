@@ -1,7 +1,5 @@
 package com.proyectofinal.usermicroservice.entities;
 
-import org.hibernate.annotations.Generated;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 

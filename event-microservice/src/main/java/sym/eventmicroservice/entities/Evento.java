@@ -1,10 +1,10 @@
 package sym.eventmicroservice.entities;
 
-import org.hibernate.annotations.Generated;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.ArrayList;
 
+@Entity
 public class Evento {
 
     @Id

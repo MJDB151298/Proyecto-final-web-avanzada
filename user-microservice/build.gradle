@@ -39,6 +39,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     compile('org.springframework.boot:spring-boot-starter-mail')
     compile('com.sendgrid:sendgrid-java:4.0.1')
+    compile(group: 'commons-codec', name: 'commons-codec', version: '1.11')
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
