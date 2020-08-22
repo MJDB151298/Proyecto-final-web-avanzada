@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:spring="http://www.w3.org/1999/XSL/Transform">
+
+<head th:fragment="css">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Servicios Multimedia S&M</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/scrolling-nav.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav" th:fragment="navigation">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top" th:text="#{inicio}">Inicio</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#planes">Planes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#usuarios">Usuarios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#estadisticas">Estadisticas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#perfiles">Roles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/">Cerrar Sesion</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="bg-primary text-white" th:fragment="header">
+    <div class="container text-center">
+      <h1>Servicios Multimedia S&M</h1>
+      <p class="lead" th:text="#{slogan}"></p>
+    </div>
+  </header>
+
+  <section id="planes">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>Planes</h2>
+          <p class="lead" >En este modulo podemos comprar alguno de los planes disponibles</p>
+          <button type="button" class="btn btn-primary btn-lg" onclick="window.location='/plans';">Acceder Planes</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="usuario" class="bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2 >Usuarios</h2>
+          <p class="lead">En este modulo podemos manejar los usuarios registrados en el sistema</p>
+          <button type="button" class="btn btn-primary btn-lg" onclick="window.location='/users';">Acceder Usuarios</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="estadisticas">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>Estadisticas</h2>
+          <p class="lead">En este modulo podemos visualizar distintos graficos estadisticos de la empresa</p>
+          <button type="button" class="btn btn-primary btn-lg" onclick="window.location='/';">Acceder Estadisticas</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="perfiles" class="bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>Roles</h2>
+          <p class="lead">En este modulo podemos manejar los roles de usuario</p>
+          <button type="button" class="btn btn-primary btn-lg" onclick="window.location='/roles';">Acceder Roles</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; S&M 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom JavaScript for this theme -->
+  <script src="js/scrolling-nav.js"></script>
+
+</body>
+
+</html>
