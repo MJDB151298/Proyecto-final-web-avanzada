@@ -3,6 +3,7 @@ package com.proyectofinal.usermicroservice.services;
 import com.sendgrid.*;
 import com.proyectofinal.usermicroservice.entities.User;
 import com.proyectofinal.usermicroservice.repository.UserRepository;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +24,16 @@ public class UserServices {
     }
 
     public List<User> findAllUsers() { return userRepository.findAll(); }
+
+    public void createAdmin() {
+        String username = "admin";
+        String password = DigestUtils.md5Hex("admin");
+        String email = "20160370@ce.pucmm.edu.do";
+        String role = "ADMIN";
+        if(userRepository.count() == 0){
+            createUser(new User(username, password, email, role));
+        }
+    }
 
     @Transactional
     public boolean createUser(User user){
