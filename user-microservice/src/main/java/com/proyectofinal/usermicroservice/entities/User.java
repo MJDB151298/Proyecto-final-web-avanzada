@@ -6,7 +6,7 @@ import java.util.Set;
 @Entity
 public class User {
     @Id
-    @Column(length = 2000)
+    @Column(length = 64)
     private String username;
     @Column(length = 2000)
     private String password;
