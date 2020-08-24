@@ -3,6 +3,7 @@ package com.proyectofinal.usermicroservice.services;
 import com.sendgrid.*;
 import com.proyectofinal.usermicroservice.entities.User;
 import com.proyectofinal.usermicroservice.repository.UserRepository;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -21,43 +23,16 @@ public class UserServices {
         return userRepository.findByUsername(username);
     }
 
-    public boolean sendRegistrationEmail(User user){
-        Email desdeEmail = new Email("20160370@ce.pucmm.edu.do");
-        String asuntoEmail = "Creacion de cuenta";
-        Email paraEmail = new Email(user.getMail());
-        Content cuerpoEmail = new Content("text/plain", "Su nombre de usuario es: " + user.getUsername());
-        Mail email = new Mail(desdeEmail, asuntoEmail, paraEmail, cuerpoEmail);
+    public List<User> findAllUsers() { return userRepository.findAll(); }
 
-        //Why is this null, tha heck
-        File file = new File("SENDGRID_API_KEY.txt");
-        Scanner sc = null;
-        try {
-            sc = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+    public void createAdmin() {
+        String username = "admin";
+        String password = DigestUtils.md5Hex("admin");
+        String email = "20160370@ce.pucmm.edu.do";
+        String role = "ADMIN";
+        if(userRepository.count() == 0){
+            createUser(new User(username, password, email, role));
         }
-        //System.out.println(System.getenv());
-        //System.out.println("REEEEEEEEEE"+System.getenv("SENDGRID_API_KEY"));
-        String value = sc.nextLine();
-        System.out.println(value);
-        SendGrid sg = new SendGrid(value);
-        Request request = new Request();
-
-        try {
-            request.setMethod(Method.POST);
-            request.setEndpoint("mail/send");
-            request.setBody(email.build());
-            Response response = sg.api(request);
-
-            System.out.println(response.getStatusCode());
-            System.out.println(response.getBody());
-            System.out.println(response.getHeaders());
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return false;
-        }
-        return true;
-
     }
 
     @Transactional
@@ -87,6 +62,7 @@ public class UserServices {
             newUser.setUsername(user.getUsername());
             newUser.setMail(user.getMail());
             newUser.setPassword(user.getPassword());
+            newUser.setRole(user.getRole());
             return true;
         }
         return false;
