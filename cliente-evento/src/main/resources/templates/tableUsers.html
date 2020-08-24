@@ -261,6 +261,7 @@
                     </span>
                 </th>
                 <th>Nombre</th>
+                <th>Correo</th>
                 <th>Rol</th>
             </tr>
             </thead>
@@ -269,15 +270,16 @@
                 <tr>
                     <td>
                         <span class="custom-checkbox">
-                            <input type="checkbox" th:id="'checkbox' + ${usuario.id}" name="options[]" value="1">
-                            <label th:for="'checkbox' + ${usuario.id}"></label>
+                            <input type="checkbox" th:id="'checkbox' + ${usuario.username}" name="options[]" value="1">
+                            <label th:for="'checkbox' + ${usuario.username}"></label>
                         </span>
                     </td>
                     <td th:text = "${usuario.username}" th:id="${usuario.username}"></td>
-                    <td th:text = "${usuario.roles[0].name}"></td>
+                    <td th:text = "${usuario.mail}"></td>
+                    <td th:text = "${usuario.role}"></td>
                     <td>
-                        <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit" th:id="${usuario.username} + '-' + ${usuario.password} + '-' + ${usuario.roles}" onclick="edit_clicked(this.id)">&#xE254;</i></a>
-                        <a href="#deleteEmployeeModal" class="delete" data-toggle="modal" th:id="${usuario.id}" onclick="delete_clicked(this.id)"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                        <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit" th:id="${usuario.username} + '-' + ${usuario.password} + '-' + ${usuario.role}" onclick="edit_clicked(this.id)">&#xE254;</i></a>
+                        <a href="#deleteEmployeeModal" class="delete" data-toggle="modal" th:id="${usuario.username}" onclick="delete_clicked(this.username)"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                     </td>
                 </tr>
             </th:block>
@@ -301,7 +303,7 @@
 <div id="addEmployeeModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form role="form" method="post" action="/usuarios/crear/">
+            <form role="form" method="post" action="/users/create">
                 <div class="modal-header">
                     <h4 class="modal-title">Añadir Usuario</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -309,16 +311,22 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Nombre</label>
-                        <input type="text" name="username" class="form-control" required>
+                        <input type="text" name="name" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label>Contraseña</label>
-                        <input type="password" name="contrasena" class="form-control" required>
+                        <input type="password" name="password" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Correo Electronico</label>
+                        <input type="email" name="mail" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label>Rol
                             <select name="role" required>
                                 <option>-Elegir rol-</option>
+                                <option>ADMIN</option>
+                                <option>USER</option>
                             </select>
                         </label>
                     </div>

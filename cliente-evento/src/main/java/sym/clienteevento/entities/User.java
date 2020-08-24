@@ -1,18 +1,11 @@
-package com.proyectofinal.usermicroservice.entities;
+package sym.clienteevento.entities;
 
-import javax.persistence.*;
 import java.util.Set;
 
-@Entity
 public class User {
-    @Id
-    @Column(length = 2000)
     private String username;
-    @Column(length = 2000)
     private String password;
-    @Column(length = 2000)
     private String mail;
-   // @ManyToMany(fetch = FetchType.EAGER)
     private String role;
 
     public User(){}

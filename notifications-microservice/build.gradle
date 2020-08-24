@@ -4,7 +4,7 @@ plugins {
     id 'java'
 }
 
-group = 'sym'
+group = 'com.proyectofinal'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
@@ -23,25 +23,21 @@ ext {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    //Libreria para centralizar la configuacion.
-    implementation 'org.springframework.cloud:spring-cloud-starter-config'
-    //Libreria para agregar la notificacion con Eureka
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-    //Libreria para la caja de brakers
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-zuul'
     compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'mysql:mysql-connector-java'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
+    compile('com.sendgrid:sendgrid-java:4.0.1')
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
-    testImplementation 'org.springframework.security:spring-security-test'
 }
 
 dependencyManagement {
