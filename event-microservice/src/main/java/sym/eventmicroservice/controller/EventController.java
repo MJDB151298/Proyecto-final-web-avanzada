@@ -18,18 +18,17 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/")
 public class EventController {
 
     @Autowired
     EventServices eventServices;
 
-    @RequestMapping("getEventos")
+    @RequestMapping("/getEventos")
     public @ResponseBody List<Evento> getEventos(){
         return eventServices.getEventos();
     }
 
-    @RequestMapping("getFakeProducts")
+    @RequestMapping("/getFakeProducts")
     public @ResponseBody List<Producto> getFakeProducts(){
         Producto producto1 = new Producto("Camara");
         Producto producto2 = new Producto("Asistentes");
@@ -40,7 +39,7 @@ public class EventController {
         return productoList;
     }
 
-    @RequestMapping("procesarCompraPaypal")
+    @RequestMapping("/procesarCompraPaypal")
     public String procesarCompra(Model model, @RequestParam("params") Map<String,String> params)
     {
         eventServices.generarCompra(params.get("invoice"), params.get("txn_id"), params.get("item_name"), params.get("payment_status"), new BigDecimal(params.get("payment_gross")),
@@ -50,7 +49,7 @@ public class EventController {
         return "/home";
     }
 
-    @RequestMapping("getComprasCount")
+    @RequestMapping("/getComprasCount")
     public @ResponseBody long getComprasCount(){
         return eventServices.countCompras();
     }

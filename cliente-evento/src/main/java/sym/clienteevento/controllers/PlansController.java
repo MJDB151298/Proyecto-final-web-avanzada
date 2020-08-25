@@ -20,7 +20,8 @@ public class PlansController {
         //Obteniendo la cantidad de compras hasta el momento.
         final String uri_compras = "http://localhost:8080/event-microservice/getComprasCount";
         ResponseEntity<Long> responseEntityCompras = restTemplate.getForEntity(uri_compras, null, Long.class);
-        model.addAttribute("comprasCount", responseEntityCompras.getBody()+1);
+        long count = responseEntityCompras.getBody();
+        model.addAttribute("comprasCount", count+1);
 
         //Obteniendo los planes de eventos disponibles
         final String uri_eventos = "http://localhost:8080/event-microservice/getEventos";
