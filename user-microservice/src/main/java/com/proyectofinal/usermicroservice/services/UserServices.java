@@ -35,6 +35,16 @@ public class UserServices {
         }
     }
 
+    public boolean validateUser(String username, String password){
+        User user = findUser(username);
+        if(user != null){
+            if(user.getPassword().equals(DigestUtils.md5Hex(password))){
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Transactional
     public boolean createUser(User user){
         if(userRepository.findByUsername(user.getUsername()) != null){

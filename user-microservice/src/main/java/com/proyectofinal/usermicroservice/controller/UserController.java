@@ -28,6 +28,11 @@ public class UserController {
         return userService.findAllUsers();
     }
 
+    @RequestMapping("/validateUser")
+    public @ResponseBody boolean validateUser(@RequestParam("username") String username, @RequestParam("password") String password){
+        return userService.validateUser(username, password);
+    }
+
     @RequestMapping(value = "/createUser", method = RequestMethod.POST)
     public ResponseEntity<String> createUser(@RequestBody User user){
         user.setPassword(DigestUtils.md5Hex(user.getPassword()));
@@ -35,10 +40,10 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @RequestMapping("/deleteUser")
-    public String deleteUser(@RequestParam("username") String username){
+    @RequestMapping(value = "/deleteUser", method = RequestMethod.DELETE)
+    public ResponseEntity<String> deleteUser(@RequestParam("username") String username){
         userService.deleteUser(username);
-        return "";
+        return new ResponseEntity<>(HttpStatus.GONE);
     }
 
     @RequestMapping("/updateUser")
