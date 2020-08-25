@@ -1,25 +1,9 @@
-package sym.eventmicroservice.entities;
+package sym.clienteevento.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-@Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class Compra implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Compra {
     private Long id;
     private String nombre;
     private String factura;
@@ -42,6 +26,27 @@ public class Compra implements Serializable {
     private String ciudad;
     private String user;
 
+    public Compra(){}
+
+    public Compra(String nombre, String factura, String transaccion, String estatusPago, BigDecimal montoCompra, BigDecimal montoFee, BigDecimal montoEnvio, BigDecimal montoManejo, String compradorId, String emailComprador, Date fechaCompra, String vendedor, String direccion, String zip, String estado, String ciudad, String user) {
+        this.nombre = nombre;
+        this.factura = factura;
+        this.transaccion = transaccion;
+        this.estatusPago = estatusPago;
+        this.montoCompra = montoCompra;
+        this.montoFee = montoFee;
+        this.montoEnvio = montoEnvio;
+        this.montoManejo = montoManejo;
+        this.compradorId = compradorId;
+        this.emailComprador = emailComprador;
+        this.fechaCompra = fechaCompra;
+        this.vendedor = vendedor;
+        this.direccion = direccion;
+        this.zip = zip;
+        this.estado = estado;
+        this.ciudad = ciudad;
+        this.user = user;
+    }
 
     public Long getId() {
         return id;

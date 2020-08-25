@@ -1,12 +1,8 @@
-package sym.eventmicroservice.entities;
+package sym.clienteevento.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
 public class Producto {
 
-    @Id
+
     private String nombre;
 
     public Producto(){}

@@ -1,13 +1,8 @@
-package sym.eventmicroservice.entities;
+package sym.clienteevento.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.util.ArrayList;
 
-@Entity
 public class Evento {
-
-    @Id
     private String nombre;
     private ArrayList<Producto> productos;
     private float precio;
