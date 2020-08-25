@@ -11,6 +11,7 @@ import sym.eventmicroservice.repository.EventRepository;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class EventServices {
@@ -22,17 +23,26 @@ public class EventServices {
 
     public boolean generarPlanes()
     {
-        Evento preBoda = new Evento("Pre-Boda",1000);
-        Evento boda = new Evento("Boda", 5000);
-        Evento cumpleanos = new Evento("Cumpleaños", 3000);
-        Evento videoEvento = new Evento("Video de evento", 4000);
+        if(eventRepository.count() == 0){
+            Evento preBoda = new Evento("Pre-Boda",1000);
+            Evento boda = new Evento("Boda", 5000);
+            Evento cumpleanos = new Evento("Cumpleaños", 3000);
+            Evento videoEvento = new Evento("Video de evento", 4000);
 
-        eventRepository.save(preBoda);
-        eventRepository.save(boda);
-        eventRepository.save(cumpleanos);
-        eventRepository.save(videoEvento);
-
+            eventRepository.save(preBoda);
+            eventRepository.save(boda);
+            eventRepository.save(cumpleanos);
+            eventRepository.save(videoEvento);
+        }
         return eventRepository.count() > 0;
+    }
+
+    public List<Evento> getEventos(){
+        return eventRepository.findAll();
+    }
+
+    public long countCompras(){
+        return compraRepository.count();
     }
 
     @Transactional

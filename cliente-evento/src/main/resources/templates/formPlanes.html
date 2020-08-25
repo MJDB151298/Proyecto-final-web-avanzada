@@ -52,13 +52,13 @@
                         <div class="col-2">
                             <div class="input-group">
                                 <label class="label">Usuario</label>
-                                <input class="input--style-4" type="number" name="user" required>
+                                <input class="input--style-4" type="text" name="user" required>
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="input-group">
                                 <label class="label"># Compra</label>
-                                <input class="input--style-4" type="number" name="invoice" required>
+                                <input class="input--style-4" type="number" name="invoice" th:value="${comprasCount}" required>
                             </div>
                         </div>
                         <div class="col-2">
@@ -72,6 +72,9 @@
                                 <label class="label">Plan</label>
                                 <select name="plan" required>
                                     <option>-Elegir plan-</option>
+                                    <th:block th:each="evento : ${listEventos}">
+                                        <option th:text = "${evento.nombre} + ' - ' + ${evento.precio}"></option>
+                                    </th:block>
                                 </select>
                             </div>
                         </div>
@@ -83,6 +86,14 @@
                         </div>
                     </div>
                     <h3 class="title">Productos</h3>
+                    <div class="row row-space">
+                        <div class="col-4">
+                            <th:block th:each="producto : ${listProductos}">
+                                <input type="checkbox" id="producto" name="productos" th:value="${producto.nombre}">
+                                <label for="producto" th:text="${producto.nombre}"></label>
+                            </th:block>
+                        </div>
+                    </div>
                     <div class="row row-space">
                         <div class="col-2">
                             <div class="input-group">
