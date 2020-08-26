@@ -5,8 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
+import sym.clienteevento.entities.Compra;
 import sym.clienteevento.entities.Evento;
 import sym.clienteevento.entities.Producto;
+
+import java.math.BigDecimal;
+import java.util.Date;
 
 @Controller
 @RequestMapping("/plans")
@@ -21,7 +25,7 @@ public class PlansController {
         final String uri_compras = "http://localhost:8080/event-microservice/getComprasCount";
         ResponseEntity<Long> responseEntityCompras = restTemplate.getForEntity(uri_compras, null, Long.class);
         long count = responseEntityCompras.getBody();
-        model.addAttribute("comprasCount", count+1);
+        model.addAttribute("comprasCount", responseEntityCompras.getBody());
 
         //Obteniendo los planes de eventos disponibles
         final String uri_eventos = "http://localhost:8080/event-microservice/getEventos";
