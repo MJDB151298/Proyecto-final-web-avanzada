@@ -1,8 +1,11 @@
 package sym.eventmicroservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -46,7 +49,7 @@ public class EventController {
 //                new BigDecimal(params.get("handling_amount")), new BigDecimal(params.get("payment_fee")), new BigDecimal(params.get("shipping")), params.get("payer_email"), params.get("business"),
 //                params.get("address_city"), params.get("address_zip"), params.get("address_state"), params.get("address_name"), params.get("user"));
 
-        eventServices.save(compra);
+        eventServices.guardarCompra(compra);
 
 
 

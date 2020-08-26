@@ -48,8 +48,8 @@ public class EventServices {
     //no se ta usando
     @Transactional
     public Compra generarCompra(String invoice, String txn_id, String item_name, String payment_status, BigDecimal payment_gross, BigDecimal handling_amount,
-                                 BigDecimal payment_fee, BigDecimal shipping, String payer_email, String business, String address_city, String address_zip,
-                                 String address_state, String address_name, String user)
+                                BigDecimal payment_fee, BigDecimal shipping, String payer_email, String business, String address_city, String address_zip,
+                                String address_state, String address_name, String user)
     {
         Compra compra = new Compra();
 
@@ -77,6 +77,13 @@ public class EventServices {
         compraRepository.save(compra);
 
         return compra;
+    }
+
+    @Transactional
+    public boolean guardarCompra(Compra compra)
+    {
+        compraRepository.save(compra);
+        return true;
     }
 
 }
