@@ -45,8 +45,9 @@ public class EventServices {
         return compraRepository.count();
     }
 
+    //no se ta usando
     @Transactional
-    public boolean generarCompra(String invoice, String txn_id, String item_name, String payment_status, BigDecimal payment_gross, BigDecimal handling_amount,
+    public Compra generarCompra(String invoice, String txn_id, String item_name, String payment_status, BigDecimal payment_gross, BigDecimal handling_amount,
                                  BigDecimal payment_fee, BigDecimal shipping, String payer_email, String business, String address_city, String address_zip,
                                  String address_state, String address_name, String user)
     {
@@ -75,7 +76,7 @@ public class EventServices {
 
         compraRepository.save(compra);
 
-        return compraRepository.count() > 0;
+        return compra;
     }
 
 }

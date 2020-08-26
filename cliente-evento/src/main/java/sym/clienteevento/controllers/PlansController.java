@@ -39,8 +39,38 @@ public class PlansController {
     }
 
     @RequestMapping("/paypal")
-    public String paypal() {
-        //TODO: llamar el microservicio de eventos
+    public String paypal(params.get("invoice"), params.get("txn_id"), params.get("item_name"), params.get("payment_status"), new BigDecimal(params.get("payment_gross")),
+            new BigDecimal(params.get("handling_amount")), new BigDecimal(params.get("payment_fee")), new BigDecimal(params.get("shipping")), params.get("payer_email"), params.get("business"),
+            params.get("address_city"), params.get("address_zip"), params.get("address_state"), params.get("address_name"), params.get("user")) {
+
+        Compra compra = new Compra();
+        compra.setFactura(params.get("invoice"));
+        compra.setTransaccion(params.get("txn_id"));
+        compra.setNombre(params.get("item_name"));
+        compra.setEstatusPago(params.get("payment_status"));
+
+        compra.setMontoCompra(new BigDecimal(params.get("payment_gross")));
+        compra.setMontoManejo(new BigDecimal(params.get("handling_amount")));
+        compra.setMontoFee(new BigDecimal(params.get("payment_fee")));
+        compra.setMontoEnvio(new BigDecimal(params.get("shipping")));
+
+        compra.setCompradorId(params.get("txn_id"));
+        compra.setEmailComprador(params.get("payer_email"));
+        compra.setFechaCompra(new Date());
+        compra.setVendedor(params.get("business"));
+
+        compra.setCiudad(params.get("address_city"));
+        compra.setZip(params.get("address_zip"));
+        compra.setEstado(params.get("address_state"));
+        compra.setDireccion(params.get("address_name"));
+        compra.setUser(params.get("user"));
+
+
+        final String uri_compra = "http://localhost:8080/event-microservice/procesarCompraPaypal";
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.postForObject(uri_compra, compra, Compra.class);
+
+
 
         return "plans";
     }

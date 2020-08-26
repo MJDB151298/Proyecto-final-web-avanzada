@@ -40,18 +40,23 @@ public class EventController {
     }
 
     @RequestMapping("/procesarCompraPaypal")
-    public String procesarCompra(Model model, @RequestParam("params") Map<String,String> params)
+    public ResponseEntity<String> procesarCompra(@RequestBody Compra compra)
     {
-        eventServices.generarCompra(params.get("invoice"), params.get("txn_id"), params.get("item_name"), params.get("payment_status"), new BigDecimal(params.get("payment_gross")),
-                new BigDecimal(params.get("handling_amount")), new BigDecimal(params.get("payment_fee")), new BigDecimal(params.get("shipping")), params.get("payer_email"), params.get("business"),
-                params.get("address_city"), params.get("address_zip"), params.get("address_state"), params.get("address_name"), params.get("user"));
+//        eventServices.generarCompra(params.get("invoice"), params.get("txn_id"), params.get("item_name"), params.get("payment_status"), new BigDecimal(params.get("payment_gross")),
+//                new BigDecimal(params.get("handling_amount")), new BigDecimal(params.get("payment_fee")), new BigDecimal(params.get("shipping")), params.get("payer_email"), params.get("business"),
+//                params.get("address_city"), params.get("address_zip"), params.get("address_state"), params.get("address_name"), params.get("user"));
 
-        return "/home";
+        eventServices.save(compra);
+
+
+
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @RequestMapping("/getComprasCount")
     public @ResponseBody long getComprasCount(){
         return eventServices.countCompras();
     }
+
 
 }
