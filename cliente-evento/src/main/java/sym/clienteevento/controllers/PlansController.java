@@ -39,31 +39,32 @@ public class PlansController {
     }
 
     @RequestMapping("/paypal")
-    public String paypal(params.get("invoice"), params.get("txn_id"), params.get("item_name"), params.get("payment_status"), new BigDecimal(params.get("payment_gross")),
-            new BigDecimal(params.get("handling_amount")), new BigDecimal(params.get("payment_fee")), new BigDecimal(params.get("shipping")), params.get("payer_email"), params.get("business"),
-            params.get("address_city"), params.get("address_zip"), params.get("address_state"), params.get("address_name"), params.get("user")) {
+    public String paypal(@RequestParam("invoice") String invoice, @RequestParam("txn_id") String txn_id, @RequestParam("item_name") String item_name, @RequestParam("payment_status") String payment_status
+            , @RequestParam("payment_gross") BigDecimal payment_gross, @RequestParam("handling_amount") BigDecimal handling_amount, @RequestParam("payment_fee") BigDecimal payment_fee, @RequestParam("shipping") BigDecimal shipping,
+                         @RequestParam("payer_email") String payer_email, @RequestParam("business") String business, @RequestParam("address_city") String address_city, @RequestParam("address_zip") String address_zip,
+                         @RequestParam("address_state") String address_state, @RequestParam("address_name") String address_name, @RequestParam("user") String user) {
 
         Compra compra = new Compra();
-        compra.setFactura(params.get("invoice"));
-        compra.setTransaccion(params.get("txn_id"));
-        compra.setNombre(params.get("item_name"));
-        compra.setEstatusPago(params.get("payment_status"));
+        compra.setFactura(invoice);
+        compra.setTransaccion(txn_id);
+        compra.setNombre(item_name);
+        compra.setEstatusPago(payment_status);
 
-        compra.setMontoCompra(new BigDecimal(params.get("payment_gross")));
-        compra.setMontoManejo(new BigDecimal(params.get("handling_amount")));
-        compra.setMontoFee(new BigDecimal(params.get("payment_fee")));
-        compra.setMontoEnvio(new BigDecimal(params.get("shipping")));
+        compra.setMontoCompra(payment_gross);
+        compra.setMontoManejo(handling_amount);
+        compra.setMontoFee(payment_fee);
+        compra.setMontoEnvio(shipping);
 
-        compra.setCompradorId(params.get("txn_id"));
-        compra.setEmailComprador(params.get("payer_email"));
+        compra.setCompradorId(txn_id);
+        compra.setEmailComprador(payer_email);
         compra.setFechaCompra(new Date());
-        compra.setVendedor(params.get("business"));
+        compra.setVendedor(business);
 
-        compra.setCiudad(params.get("address_city"));
-        compra.setZip(params.get("address_zip"));
-        compra.setEstado(params.get("address_state"));
-        compra.setDireccion(params.get("address_name"));
-        compra.setUser(params.get("user"));
+        compra.setCiudad(address_city);
+        compra.setZip(address_zip);
+        compra.setEstado(address_state);
+        compra.setDireccion(address_name);
+        compra.setUser(user);
 
 
         final String uri_compra = "http://localhost:8080/event-microservice/procesarCompraPaypal";
