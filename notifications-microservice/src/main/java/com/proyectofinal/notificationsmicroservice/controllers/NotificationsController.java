@@ -4,12 +4,15 @@ import com.proyectofinal.notificationsmicroservice.entities.Factura;
 import com.proyectofinal.notificationsmicroservice.services.EmailServices;
 import com.proyectofinal.notificationsmicroservice.services.FacturaServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.sendgrid.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/factura")
@@ -36,29 +39,11 @@ public class NotificationsController {
     }
 
     @RequestMapping("/correoCompra")
-    public ResponseEntity<String> correoCompra(@RequestBody Compra compra)
+    public String correoCompra(@RequestParam("empleados") List<String> empleados, @RequestParam("correos") List<String> correos)
     {
-        Email emisor = new Email("20160370@ce.pucmm.edu.do");
-        String asunto = "Se realizo una compra";
-        Email receptor = new Email("20161534@ce.pucmm.edu.do");
-        Content cuerpo = new Content("text/plain", "Esta compra fue realizada");
-        Mail email = new Mail(emisor, asunto, receptor, cuerpo);
-
-        SendGrid apikey = new SendGrid(System.getenv("SENDGRID_API_KEY"));
-        Request request = new Request();
-
-        try {
-            request.setMethod(Method.POST);
-            request.setEndpoint("mail/send");
-            request.setBody(email.build());
-            Response response = sg.api(request);
-
-            System.out.println(response.getStatusCode());
-            System.out.println(response.getBody());
-            System.out.println(response.getHeaders());
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+       for(int i = 0; i < empleados.size(); i++){
+           emailServices.sendEmail(empleados.get(i), correos.get(i), "Compra realizada", "Usted realizo una compra!");
+       }
+       return "Correos enviados!";
     }
 }
