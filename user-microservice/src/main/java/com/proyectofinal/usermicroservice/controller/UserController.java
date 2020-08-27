@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -28,6 +29,11 @@ public class UserController {
         return userService.findAllUsers();
     }
 
+    @RequestMapping("/findUser")
+    public @ResponseBody User findUser(@RequestParam("username") String username){
+        return userService.findUser(username);
+    }
+
     @RequestMapping("/validateUser")
     public @ResponseBody boolean validateUser(@RequestParam("username") String username, @RequestParam("password") String password){
         return userService.validateUser(username, password);
@@ -37,6 +43,11 @@ public class UserController {
     public ResponseEntity<String> createUser(@RequestBody User user){
         user.setPassword(DigestUtils.md5Hex(user.getPassword()));
         userService.createUser(user);
+
+        //Sending creation email
+        RestTemplate restTemplate = new RestTemplate();
+        final String email_uri ="http://localhost:8080/notifications-microservice/factura/sendAccountNotification?username=" + user.getUsername() + "&username_email=" + user.getMail();
+        restTemplate.getForEntity(email_uri, null, (Object) null);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

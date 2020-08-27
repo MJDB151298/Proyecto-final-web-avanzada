@@ -19,16 +19,16 @@
                     <a class="nav-link" href="/plans/">Planes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/users/">Usuarios</a>
+                    <a class="nav-link" href="/users/" th:unless="${activeUser.role == 'ADMIN'}">Usuarios</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Estadisticas</a>
+                    <a class="nav-link" href="/" th:unless="${activeUser.role == 'ADMIN'}">Estadisticas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/roles/">Roles</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Cerrar Sesion</a>
+                    <a class="nav-link" href="/login/logout">Cerrar sesion</a>
                 </li>
             </ul>
         </div>
