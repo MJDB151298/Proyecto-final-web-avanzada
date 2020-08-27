@@ -26,7 +26,7 @@ EXPOSE 200-65000
 
 # Copiando el archivo jar generado luego de la ejecución del comando
 # gradle task bootjar, se crean el jar y se copia a la imagen.
-COPY notifications-microservice/build/libs/notifications-microservice-0.0.1-SNAPSHOT.jar
+COPY build/libs/notifications-microservice-0.0.1-SNAPSHOT.jar notifications.jar
 
 #Comando que se ejecuta una vez es iniciada la aplicación.
-ENTRYPOINT ["java", "-jar", "mi_app.jar"]
+ENTRYPOINT ["java", "-jar", "notifications.jar"]

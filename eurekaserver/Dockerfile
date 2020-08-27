@@ -10,11 +10,11 @@ LABEL maintainer="Saul Feliciano <20161534@ce.pucmm.edu.do>"
 
 # Indicando variable de ambiente para pasar el nombre
 # de la base de datos.
-ENV NOMBRE_APP = 'eventmicroservice'
+ENV NOMBRE_APP = 'eurekaserver'
 # forma estandar para cambiar la configuracion
-ENV spring.datasource.url='jdbc:mysql://192.168.77.10:3306/eventservice'
-ENV spring.datasource.username='admin'
-ENV spring.datasource.password='admin'
+#ENV spring.datasource.url='jdbc:mysql://192.168.77.10:3306/eventservice'
+#ENV spring.datasource.username='admin'
+#ENV spring.datasource.password='admin'
 
 # Añadiendo el punto de montaje en el host
 # Por defecto Tomcat crea los archivo temporales en esa ruta,
@@ -26,7 +26,7 @@ EXPOSE 200-65000
 
 # Copiando el archivo jar generado luego de la ejecución del comando
 # gradle task bootjar, se crean el jar y se copia a la imagen.
-COPY build/libs/event-microservice-0.0.1-SNAPSHOT.jar
+COPY build/libs/eurekaserver-0.0.1-SNAPSHOT.jar eureka.jar
 
 #Comando que se ejecuta una vez es iniciada la aplicación.
-ENTRYPOINT ["java", "-jar", "mi_app.jar"]
+ENTRYPOINT ["java", "-jar", "eureka.jar"]
