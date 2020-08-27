@@ -30,19 +30,19 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#planes">Planes</a>
+            <a class="nav-link js-scroll-trigger" href="/plans">Planes</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#usuarios">Usuarios</a>
+            <a class="nav-link js-scroll-trigger" href="/users" th:if="${activeUser.role == 'ADMIN'}">Usuarios</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#estadisticas">Estadisticas</a>
+            <a class="nav-link js-scroll-trigger" href="#estadisticas" th:if="${activeUser.role == 'ADMIN'}">Estadisticas</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#perfiles">Roles</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/">Cerrar Sesion</a>
+            <a class="nav-link" href="/login/logout">Cerrar sesion</a>
           </li>
         </ul>
       </div>

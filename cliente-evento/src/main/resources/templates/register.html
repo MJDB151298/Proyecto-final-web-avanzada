@@ -31,10 +31,10 @@
     <div class="wrapper wrapper--w790">
         <div class="card card-5">
             <div class="card-heading">
-                <h2 class="title">Acceso</h2>
+                <h2 class="title">Registro</h2>
             </div>
             <div class="card-body">
-                <form method="POST" action="/login/validateUser">
+                <form method="POST" action="/register/createUser">
                     <div class="form-row m-b-55">
                         <div class="name">Credenciales</div>
                         <div class="value">
@@ -49,6 +49,15 @@
                                     <div class="input-group-desc">
                                         <input id="password" class="input--style-5" type="password" name="password" th:value="${contrasena}" required />
                                         <label class="label--desc">Contraseña</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <br><br>
+                            <div class="row row-space">
+                                <div class="col-2">
+                                    <div class="input-group-desc">
+                                        <input id="mail" class="input--style-5" type="text" name="mail" th:value="${correo}" required />
+                                        <label class="label--desc">Correo</label>
                                     </div>
                                 </div>
                             </div>
