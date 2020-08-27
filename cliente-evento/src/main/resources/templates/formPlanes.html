@@ -35,7 +35,7 @@
         <div class="card card-4">
             <div class="card-body">
                 <h2 class="title">Planes</h2>
-                <form role="form" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="POST">
+                <form role="form" action="/plans/paypal" method="POST">
                     <input type="hidden" name="cmd" value="_xclick">
                     <input type="hidden" name="business" th:value="${cuentaNegocio}" value="....">
                     <input type="hidden" name="currency_code" value="RD">

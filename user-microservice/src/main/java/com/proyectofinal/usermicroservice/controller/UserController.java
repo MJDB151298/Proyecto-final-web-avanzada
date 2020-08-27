@@ -51,6 +51,11 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @RequestMapping("/getEmployees")
+    public @ResponseBody List<User> getEmployees(){
+        return userService.findEmployees();
+    }
+
     @RequestMapping(value = "/deleteUser", method = RequestMethod.DELETE)
     public ResponseEntity<String> deleteUser(@RequestParam("username") String username){
         userService.deleteUser(username);

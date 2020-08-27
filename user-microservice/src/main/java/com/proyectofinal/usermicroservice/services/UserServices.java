@@ -25,6 +25,10 @@ public class UserServices {
 
     public List<User> findAllUsers() { return userRepository.findAll(); }
 
+    public List<User> findEmployees(){
+        return userRepository.findByRole("EMPLOYEE");
+    }
+
     public void createAdmin() {
         String username = "admin";
         String password = DigestUtils.md5Hex("admin");

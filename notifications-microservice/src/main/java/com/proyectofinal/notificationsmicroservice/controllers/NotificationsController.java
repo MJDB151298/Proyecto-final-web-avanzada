@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.sendgrid.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileNotFoundException;
@@ -72,5 +73,13 @@ public class NotificationsController {
            emailServices.sendEmail(empleados.get(i), correos.get(i), "Compra realizada", "Usted realizo una compra!");
        }
        return "Correos enviados!";
+    }
+
+    @RequestMapping("/correoEmpleados")
+    public String correoEmpleados(@RequestParam("empleados") List<String> empleados, @RequestParam("correos") List<String> correos){
+        for(int i = 0; i < empleados.size(); i++){
+            emailServices.sendEmail(empleados.get(i), correos.get(i), "Nueva compra!", "Se ha generado un nuevo reporte de compra!");
+        }
+        return "good";
     }
 }
