@@ -2,19 +2,22 @@ package sym.eventmicroservice.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Evento {
 
     @Id
     private String nombre;
-    private ArrayList<Producto> productos;
+    @OneToMany
+    private List<Producto> productos;
     private float precio;
 
     public Evento(){}
 
-    public Evento(String nombre, ArrayList<Producto> productos, float precio) {
+    public Evento(String nombre, List<Producto> productos, float precio) {
         this.nombre = nombre;
         this.productos = productos;
         this.precio = precio;
@@ -34,7 +37,7 @@ public class Evento {
         this.nombre = nombre;
     }
 
-    public ArrayList<Producto> getProductos() {
+    public List<Producto> getProductos() {
         return productos;
     }
 
